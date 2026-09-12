@@ -1,0 +1,16 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "web-app-worker",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-09-12"
+
+  // When you're ready to connect the existing D1 database, add a binding here.
+  // Example:
+  // ,"d1_databases": [
+  //   {
+  //     "binding": "DB",
+  //     "database_name": "your-existing-database-name",
+  //     "database_id": "your-existing-database-id"
+  //   }
+  // ]
+}
