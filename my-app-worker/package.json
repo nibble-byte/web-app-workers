@@ -1,0 +1,16 @@
+{
+  "name": "my-app-worker",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Standalone backend Cloudflare Worker for the web application",
+  "scripts": {
+    "dev": "wrangler dev",
+    "typecheck": "tsc --noEmit",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.0.0",
+    "typescript": "^5.0.0",
+    "wrangler": "^4.0.0"
+  }
+}

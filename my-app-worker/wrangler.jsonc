@@ -1,0 +1,24 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "my-app-worker",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-09-11",
+  "workers_dev": true,
+
+  // Add non-secret environment variables here as needed.
+  "vars": {},
+
+  // D1 binding placeholder:
+  // Configure this when connecting the existing D1 database to this Worker.
+  // Do not commit credentials or secret values.
+  //
+  // Expected shape:
+  // "d1_databases": [
+  //   {
+  //     "binding": "DB",
+  //     "database_name": "YOUR_DATABASE_NAME",
+  //     "database_id": "YOUR_DATABASE_ID"
+  //   }
+  // ]
+  "d1_databases": []
+}
