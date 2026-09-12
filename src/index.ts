@@ -1,12 +1,8 @@
-import { handleAuthRequest } from "./auth";
-import { handleUsersRequest } from "./users";
-import { handleSessionsRequest } from "./sessions";
-
 export interface Env {
   // D1 binding will be added later as: DB: D1Database
 }
 
-function routeRequest(request: Request, env: Env): Response | Promise<Response> {
+function routeRequest(request: Request): Response {
   const url = new URL(request.url);
   const { pathname } = url;
 
@@ -19,23 +15,11 @@ function routeRequest(request: Request, env: Env): Response | Promise<Response> 
     });
   }
 
-  if (pathname.startsWith("/auth")) {
-    return handleAuthRequest(request, env);
-  }
-
-  if (pathname.startsWith("/users")) {
-    return handleUsersRequest(request, env);
-  }
-
-  if (pathname.startsWith("/sessions")) {
-    return handleSessionsRequest(request, env);
-  }
-
   return new Response("Not Found", { status: 404 });
 }
 
 export default {
-  fetch(request, env): Response | Promise<Response> {
-    return routeRequest(request, env);
+  fetch(request): Response {
+    return routeRequest(request);
   }
 } satisfies ExportedHandler<Env>;

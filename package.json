@@ -1,5 +1,5 @@
 {
-  "name": "my-app-worker",
+  "name": "web-app-workers",
   "version": "0.1.0",
   "private": true,
   "description": "Standalone backend Cloudflare Worker for the web application",

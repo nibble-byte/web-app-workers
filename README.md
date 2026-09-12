@@ -1,20 +1,13 @@
-# my-app-worker
+# web-app-workers
 
-Standalone backend repository for a single Cloudflare Worker that serves the web application's backend API.
+Standalone backend repository for a single Cloudflare Worker that will serve the web application's backend API.
 
 The React + TypeScript frontend lives in a separate repository and is intentionally not included here.
 
-## Purpose
+## Current behavior
 
-This repository currently provides a minimal Worker with one endpoint:
-
-- `GET /health` -> `OK`
-
-It is structured to grow into backend responsibilities for:
-
-- authentication (`src/auth/`)
-- user APIs (`src/users/`)
-- session management (`src/sessions/`)
+- `GET /health` returns `200 OK` with body `OK`.
+- All other routes currently return `404 Not Found`.
 
 ## Tech stack
 
@@ -27,16 +20,11 @@ It is structured to grow into backend responsibilities for:
 ## Project structure
 
 ```
-my-app-worker/
+web-app-workers/
 ├── src/
-│   ├── index.ts
-│   ├── auth/
-│   │   └── index.ts
-│   ├── users/
-│   │   └── index.ts
-│   └── sessions/
-│       └── index.ts
+│   └── index.ts
 ├── package.json
+├── package-lock.json
 ├── tsconfig.json
 ├── wrangler.jsonc
 ├── .gitignore
@@ -67,6 +55,18 @@ Expected response:
 OK
 ```
 
+Unknown route example:
+
+```bash
+curl -i http://127.0.0.1:8787/does-not-exist
+```
+
+Expected status and body:
+
+```
+404 Not Found
+```
+
 ## Type check
 
 ```bash
@@ -84,6 +84,8 @@ npm run deploy
 Configure the D1 binding in `wrangler.jsonc` under `d1_databases` once you are ready to connect the existing database.
 
 Do not create tables here; existing tables already live in Cloudflare D1 (`users`, `user_identities`, `sessions`).
+
+Authentication, sessions, user APIs, and D1-backed data access will be added in later steps.
 
 ## Secrets and sensitive values
 
